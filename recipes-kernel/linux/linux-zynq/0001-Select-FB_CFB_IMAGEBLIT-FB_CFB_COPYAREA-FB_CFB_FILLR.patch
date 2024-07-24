@@ -1,0 +1,27 @@
+From 97caeabebf6ccb429f633985e3af8d98286527df Mon Sep 17 00:00:00 2001
+From: Jakub Jurek <jakubjurek945@gmail.com>
+Date: Mon, 26 Feb 2024 11:20:41 +0100
+Subject: [PATCH] Select FB_CFB_IMAGEBLIT, FB_CFB_COPYAREA, FB_CFB_FILLRECT in
+ fbdev Kconfig
+
+---
+ drivers/video/fbdev/Kconfig | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/video/fbdev/Kconfig b/drivers/video/fbdev/Kconfig
+index 0396df868bc7..287eccd371e1 100644
+--- a/drivers/video/fbdev/Kconfig
++++ b/drivers/video/fbdev/Kconfig
+@@ -13,6 +13,9 @@ menuconfig FB
+ 	tristate "Support for frame buffer devices"
+ 	select FB_CMDLINE
+ 	select FB_NOTIFY
++	select FB_CFB_IMAGEBLIT
++	select FB_CFB_COPYAREA
++	select FB_CFB_FILLRECT
+ 	---help---
+ 	  The frame buffer device provides an abstraction for the graphics
+ 	  hardware. It represents the frame buffer of some video hardware and
+-- 
+2.34.1
+

@@ -1,0 +1,24 @@
+From 2bf1a6cec1474467c2dcf9e971839f0df71692e8 Mon Sep 17 00:00:00 2001
+From: Jakub Jurek <jakubjurek945@gmail.com>
+Date: Fri, 23 Feb 2024 12:47:34 +0100
+Subject: [PATCH] export of_chosen symbol
+
+---
+ drivers/of/base.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 6fa209b3557b..61d31b4a5a8a 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -36,6 +36,7 @@ LIST_HEAD(aliases_lookup);
+ struct device_node *of_root;
+ EXPORT_SYMBOL(of_root);
+ struct device_node *of_chosen;
++EXPORT_SYMBOL(of_chosen);
+ struct device_node *of_aliases;
+ struct device_node *of_stdout;
+ static const char *of_stdout_options;
+-- 
+2.34.1
+

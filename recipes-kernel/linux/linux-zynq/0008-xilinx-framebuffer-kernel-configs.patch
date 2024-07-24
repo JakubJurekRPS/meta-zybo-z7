@@ -1,0 +1,40 @@
+From 262f37b90072f9c297c8b9b0a448576e8e37e1b0 Mon Sep 17 00:00:00 2001
+From: Jakub Jurek <jakubjurek945@gmail.com>
+Date: Wed, 21 Sep 2022 19:50:40 +0200
+Subject: [PATCH] xilinx framebuffer kernel configs
+
+---
+ drivers/dma/Kconfig         | 7 +++++++
+ drivers/dma/xilinx/Makefile | 1 +
+ 2 files changed, 8 insertions(+)
+
+diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+index 1322461f1f3c..3be71a147263 100644
+--- a/drivers/dma/Kconfig
++++ b/drivers/dma/Kconfig
+@@ -644,6 +644,13 @@ config XILINX_ZYNQMP_DMA
+ 	help
+ 	  Enable support for Xilinx ZynqMP DMA controller.
+ 
++config XILINX_FRMBUF
++	tristate "Xilinx Framebuffer"
++	select DMA_ENGINE
++	default m
++	help
++	 Enable support for Xilinx Framebuffer DMA.
++
+ config ZX_DMA
+ 	tristate "ZTE ZX DMA support"
+ 	depends on ARCH_ZX || COMPILE_TEST
+diff --git a/drivers/dma/xilinx/Makefile b/drivers/dma/xilinx/Makefile
+index e921de575b55..a6cbd004c0f0 100644
+--- a/drivers/dma/xilinx/Makefile
++++ b/drivers/dma/xilinx/Makefile
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-$(CONFIG_XILINX_DMA) += xilinx_dma.o
+ obj-$(CONFIG_XILINX_ZYNQMP_DMA) += zynqmp_dma.o
++obj-$(CONFIG_XILINX_FRMBUF) += xilinx_frmbuf.o
+-- 
+2.17.1
+
