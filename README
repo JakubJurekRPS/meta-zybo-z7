@@ -1,41 +1,15 @@
-This README file contains information on the contents of the meta-zybo-z7 layer.
+Yocto kirkstone compatible meeta layer for zynq7000. 
 
-Please see the corresponding sections below for details.
+video-platform-base-dev is a development image, not production image.
+It's based on mainline Linux, not Xilinx ones.
 
-Dependencies
-============
+It supports qt5 (meta-qt5 has to be added to local config before compiling)
 
-  URI: <first dependency>
-  branch: <branch name>
+The image contains my linux framebuffer driver basen on simplefb and xilinx dma framebuffer (the one provided by Xilinx 
+is just a DMA device, it does not create /dev/fb)
 
-  URI: <second dependency>
-  branch: <branch name>
+fbdev is creater in order to make it possible run qt5 (qtquick also) applications using linuxfb, without X11 nor wayland, nor any other windowing system.
 
-  .
-  .
-  .
+Linux uboot has to be compiled separately - it's not integrated here yet.
 
-Patches
-=======
-
-Please submit any patches against the meta-zybo-z7 layer to the xxxx mailing list (xxxx@zzzz.org)
-and cc: the maintainer:
-
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
-
-Table of Contents
-=================
-
-  I. Adding the meta-zybo-z7 layer to your build
- II. Misc
-
-
-I. Adding the meta-zybo-z7 layer to your build
-=================================================
-
-Run 'bitbake-layers add-layer meta-zybo-z7'
-
-II. Misc
-========
-
---- replace with specific information about the meta-zybo-z7 layer ---
+After exporting a platform from vivado desing suite and device tree creation, its directory should be set in local conf as ZYNQ_DTS_DIR
