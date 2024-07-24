@@ -1,15 +1,26 @@
 Yocto kirkstone compatible meeta layer for zynq7000. 
 
 video-platform-base-dev is a development image, not production image.
-It's based on mainline Linux, not Xilinx ones.
+It's based on mainline Linux, not Xilinx one.
 
 It supports qt5 (meta-qt5 has to be added to local config before compiling)
 
 The image contains my linux framebuffer driver basen on simplefb and xilinx dma framebuffer (the one provided by Xilinx 
 is just a DMA device, it does not create /dev/fb)
 
-fbdev is creater in order to make it possible run qt5 (qtquick also) applications using linuxfb, without X11 nor wayland, nor any other windowing system.
+fbdev is created in order to make it possible to run qt5 (qtquick also) applications using linuxfb, without X11 nor wayland, nor any other windowing system.
 
 Linux uboot has to be compiled separately - it's not integrated here yet.
+SD image creation is not configured yet. Currently it is only possible to build linux rootfs, zImage and dtb.
 
-After exporting a platform from vivado desing suite and device tree creation, its directory should be set in local conf as ZYNQ_DTS_DIR
+If one has formatted SD card or use remote booting through nfs and tftp, loadZynqImages.sh can be used to extract
+built files to SD (specifying path to SD device) or to a directory where remotefs is placed. Currently 
+directories for remote booting are hardcoded:
+/srv/tftp --> zImage and dtb directory
+/srv/nfs/zynq_remote_rootfs --> rootfs
+ so should be adjusted as needed.
+
+After exporting a platform from vivado desing suite and device tree creation, the path to its directory should be set in local conf as ZYNQ_DTS_DIR.
+
+After building the image and the SDK (meta-toolchain-qt5) there should be no problems with configuring QtCreator and building example QtQuick or QtWidgets app
+(I've tested with clocks example). It should be then run with -linuxfb option. QT_QPA_FONTDIR should be set earlier.
