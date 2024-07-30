@@ -1,16 +1,16 @@
 Yocto kirkstone compatible meeta layer for zynq7000. 
 
 video-platform-base-dev is a development image, not production image.
-It's based on mainline Linux, not Xilinx one.
+It's based on mainline Linux, not on Xilinx's fork.
 
-It supports qt5 (meta-qt5 has to be added to local config before compiling)
+It supports qt5 (meta-qt5 has to be added to local config before compiling and kirkstone branch should be checked out)
 
 The image contains my linux framebuffer driver basen on simplefb and xilinx dma framebuffer (the one provided by Xilinx 
 is just a DMA device, it does not create /dev/fb)
 
 fbdev is created in order to make it possible to run qt5 (qtquick also) applications using linuxfb, without X11 nor wayland, nor any other windowing system.
 
-Linux uboot has to be compiled separately - it's not integrated here yet.
+Uboot has to be compiled separately - it's not integrated here yet.
 SD image creation is not configured yet. Currently it is only possible to build linux rootfs, zImage and dtb.
 
 If one has formatted SD card or use remote booting through nfs and tftp, loadZynqImages.sh can be used to extract
